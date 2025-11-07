@@ -4,6 +4,7 @@ import com.example.CourseService.entity.Course;
 import com.example.CourseService.repository.CourseRepository;
 import com.example.CourseService.repository.EnrollmentRepository;
 import com.example.CourseService.service.CourseService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -20,7 +21,7 @@ public class CourseController {
     private final EnrollmentRepository enrollmentRepository;
 
     @PutMapping("/{courseId}/rating")
-    public Course updateRating(@PathVariable Long courseId, @RequestParam Double rating) {
+    public Course updateRating(@PathVariable Long courseId,@Valid @RequestParam Double rating) {
         return service.updateRating(courseId, rating);
     }
 

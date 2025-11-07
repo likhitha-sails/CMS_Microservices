@@ -1,6 +1,8 @@
 package com.example.CourseService.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 @Entity
@@ -19,7 +21,9 @@ public class Enrollment {
     @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
 
-    private double progress; // e.g. 0-100
+    @Min(value = 0, message = "Progress cannot be less than 0")
+    @Max(value = 100, message = "Progress cannot exceed 100")
+    private double progress;
 }
 
 
